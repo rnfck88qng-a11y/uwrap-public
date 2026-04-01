@@ -31,7 +31,7 @@ The reference validator checks that a wrap is:
 
 Passing validation means the wrap is structurally and integrity-valid.
 
-Passing validation does **not** by itself prove that the underlying claim is true, that the evidence is sufficient, or that the wrap was produced by a trusted issuer.
+Passing validation does **not** by itself prove that the underlying claim is true, that the evidence is sufficient, or that it is a signed uWrap from a specific issuer.
 
 ## Validate a wrap
 
@@ -84,17 +84,25 @@ See `.github/workflows/validate.yml` for a working example.
 
 ## Compliance
 
-A valid uWrap is defined as a directory that passes the official validator.
+A package is a valid uWrap only if it passes the official validator.
 
-If a package does not pass validation, it is not a uWrap.
+## Signing
 
-The validator is the source of truth for compliance.
+A package is a signed uWrap only if its `TREE_HASH.txt` has a verifiable Sigstore bundle.
 
-## Experimental: Signing
+> [!IMPORTANT]
+> Signing is not required for v0.1 compliance.
 
-`TREE_HASH.txt` can be optionally signed using [Sigstore](https://sigstore.dev) Cosign. The signature bundle is stored as `SIGNATURE.sigstore.json`.
+`TREE_HASH.txt` can be optionally signed using [Sigstore](https://sigstore.dev) Cosign. The signature bundle is stored as `SIGNATURE.sigstore.json`. This is currently experimental.
 
-This is not part of v0.1 validation and is currently experimental. See [docs/signing-spike.md](docs/signing-spike.md) for details.
+### Example signed workflow
+
+1. **Validate**: `node ci/validate_wrap.mjs WRAP_001`
+2. **Sign**: `cosign sign-blob WRAP_001/TREE_HASH.txt --bundle WRAP_001/SIGNATURE.sigstore.json`
+3. **Verify signature**: `cosign verify-blob WRAP_001/TREE_HASH.txt --bundle WRAP_001/SIGNATURE.sigstore.json --certificate-identity=...`
+4. **Revalidate**: `node ci/validate_wrap.mjs WRAP_001`
+
+See [docs/signing-spike.md](docs/signing-spike.md) for details.
 
 ## Ecosystem
 
@@ -112,13 +120,13 @@ uWrap focuses on packaging and validation of work units. Trust, distribution, an
 - Not a signature-based trust system in v0.1
 - Not a transport protocol
 - Not a guarantee that a claim is true
-- Not an official trust stamp
+- Not an issuer trust model
 
 ## Status
 
 v0.1.0 — first public release.
 
-This release defines packaging and deterministic validation for the public contract. Signature-based trust and stamping are not part of v0.1.
+This release defines packaging and deterministic validation for the public contract. Signature-based trust and issuer models are not part of v0.1.
 
 ## License
 

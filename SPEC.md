@@ -169,7 +169,7 @@ It does **NOT** prove:
 
 - The claim is true
 - The evidence is sufficient
-- The wrap is trusted or signed
+- The wrap is a signed uWrap
 
 ### Reference Validator
 
@@ -193,11 +193,11 @@ WRAP_001 is a real wrap derived from an internal proof cycle.
 uWrap v0.1 does NOT provide:
 
 - Runtime governance enforcement
-- Cryptographic signing
+- Mandatory cryptographic signing
 - Transport
 - Concurrency control
 - Economic model
-- Trust certification
+- An issuer trust model
 
 ---
 
