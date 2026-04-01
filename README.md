@@ -1,22 +1,39 @@
 # uWrap
 
-A folder-based format for verifiable AI work units.
+A folder-based format for packaging AI work with explicit structure, evidence, and deterministic validation.
 
 ## What is uWrap?
 
-uWrap is a directory structure that packages AI work outputs with metadata, evidence, and tamper-evident integrity hashing. Every uWrap contains what was claimed, what was measured, proof of integrity, and a history of state changes.
+uWrap is a directory structure for packaging AI work outputs together with metadata, result data, supporting evidence, and integrity hashes.
+
+A valid uWrap makes it easier to inspect, validate, and replay a work unit from its packaged artifacts.
+
+A minimal uWrap contains:
 
 ```
 WRAP_001/
-  manifest.json         What this wrap is about
-  RESULT.json           What was measured
-  evidence/             Raw supporting data
-  history.log           State transitions (append-only)
+  manifest.json         Metadata about the wrap
+  RESULT.json           Structured outcome
+  evidence/             Supporting artifacts
+  history.log           Append-only state log
   hashes.txt            SHA-256 per file
   TREE_HASH.txt         Root integrity hash
 ```
 
-## Validate a Wrap
+## What validation proves
+
+The reference validator checks that a wrap is:
+
+- **structurally complete**
+- **schema-valid**
+- **internally hash-consistent**
+- **equipped with a parseable result containing a status field**
+
+Passing validation means the wrap is structurally and integrity-valid.
+
+Passing validation does **not** by itself prove that the underlying claim is true, that the evidence is sufficient, or that the wrap was produced by a trusted issuer.
+
+## Validate a wrap
 
 ```bash
 node ci/validate_wrap.mjs path/to/WRAP_001
@@ -26,24 +43,21 @@ node ci/validate_wrap.mjs path/to/WRAP_001
 
 | Layer | Checks | What it verifies |
 |-------|--------|-----------------|
-| Structural | 7 | All required files present, evidence non-empty |
-| Schema | 2 | manifest.json fields valid per JSON Schema |
-| Integrity | 3 | Per-file hashes match, TREE_HASH verified, full coverage |
-| Semantic | 2 | RESULT.json parseable with status field |
+| Structural | 7 | Required files present, evidence non-empty |
+| Schema | 2 | manifest.json is valid and conforms to schema |
+| Integrity | 3 | File hashes match, TREE_HASH.txt matches, coverage complete |
+| Semantic | 2 | RESULT.json parses and includes status |
 
-Exit code 0 = valid. Exit code 1 = invalid. Add `--json` for machine-readable output.
+Exit code `0` = valid. Exit code `1` = invalid. Use `--json` for machine-readable output.
 
-Zero external dependencies. Node.js built-ins only.
+The reference validator has zero external runtime dependencies and uses Node.js built-ins only.
 
 ## Example
 
-`examples/WRAP_001/` is a real wrap produced by the first governed proof cycle — not a synthetic example. It demonstrates a regression challenge: baseline (0.85 pass rate) vs patched (0.95 pass rate), threshold met, verdict PASS.
+`examples/WRAP_001/` is a real wrap derived from an internal proof cycle. It demonstrates a regression-style comparison between baseline and patched outcomes.
 
 ```bash
-# Validate the example
 node ci/validate_wrap.mjs examples/WRAP_001
-
-# Verify from artifacts only
 node demo/replay.mjs
 ```
 
@@ -53,20 +67,24 @@ See [SPEC.md](SPEC.md) for the full v0.1 specification.
 
 ## Schemas
 
-- `schemas/WRAP_MANIFEST.schema.json` — manifest.json validation
-- `schemas/CHALLENGE_EVENT.schema.json` — challenge event contract
-- `schemas/BELIEF_UPDATE_EVENT.schema.json` — belief update contract
+- `schemas/WRAP_MANIFEST.schema.json`
+- `schemas/CHALLENGE_EVENT.schema.json`
+- `schemas/BELIEF_UPDATE_EVENT.schema.json`
 
 ## What uWrap is NOT
 
-- Not a runtime governance system (validates packages, doesn't enforce usage)
-- Not cryptographically signed (hash integrity, not non-repudiation)
-- Not a transport protocol (defines the package, not how it moves)
+- Not a runtime governance system
+- Not a signature-based trust system in v0.1
+- Not a transport protocol
+- Not a guarantee that a claim is true
+- Not an official trust stamp
 
 ## Status
 
-v0.1.0 — First public release. Format is stable for the defined contract. Extensions planned but not yet specified.
+v0.1.0 — first public release.
+
+This release defines packaging and deterministic validation for the public contract. Signature-based trust and stamping are not part of v0.1.
 
 ## License
 
-[TBD]
+Apache-2.0
