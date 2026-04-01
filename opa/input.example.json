@@ -1,0 +1,18 @@
+{
+  "validator": {
+    "valid": true,
+    "wrap_id": "WRAP_001"
+  },
+  "manifest": {
+    "lifecycle_state": "PROPOSED",
+    "source": "uLab"
+  },
+  "result": {
+    "status": "PASS"
+  },
+  "signature": {
+    "present": false,
+    "verified": false,
+    "issuer": null
+  }
+}
