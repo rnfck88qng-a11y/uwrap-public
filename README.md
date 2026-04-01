@@ -90,6 +90,12 @@ If a package does not pass validation, it is not a uWrap.
 
 The validator is the source of truth for compliance.
 
+## Experimental: Signing
+
+`TREE_HASH.txt` can be optionally signed using [Sigstore](https://sigstore.dev) Cosign. The signature bundle is stored as `SIGNATURE.sigstore.json`.
+
+This is not part of v0.1 validation and is currently experimental. See [docs/signing-spike.md](docs/signing-spike.md) for details.
+
 ## Ecosystem
 
 uWrap is designed to work with existing tooling:

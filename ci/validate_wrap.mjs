@@ -40,7 +40,7 @@ function collectFiles(dir, base) {
     const rel = relative(base, full);
     if (statSync(full).isDirectory()) {
       files = files.concat(collectFiles(full, base));
-    } else if (entry !== 'TREE_HASH.txt' && entry !== 'hashes.txt') {
+    } else if (entry !== 'TREE_HASH.txt' && entry !== 'hashes.txt' && !entry.startsWith('SIGNATURE.')) {
       files.push(rel);
     }
   }
