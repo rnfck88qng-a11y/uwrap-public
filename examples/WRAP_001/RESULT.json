@@ -1,0 +1,55 @@
+{
+  "run_id": "RUN_CHAL_001",
+  "challenge_id": "CHAL_001",
+  "claim_id": "CLAIM_001",
+  "started_at": "2026-04-01T16:26:05.128Z",
+  "completed_at": "2026-04-01T16:26:05.128Z",
+  "status": "PASS",
+  "comparison": {
+    "metric": "validation_pass_rate",
+    "baseline_version": "v0.9.0",
+    "baseline_value": 0.85,
+    "patched_version": "v0.9.1",
+    "patched_value": 0.95,
+    "improvement": 0.09999999999999998,
+    "threshold": 0.95,
+    "meets_threshold": true,
+    "improved_over_baseline": true
+  },
+  "baseline_failures": [
+    {
+      "test": "validate_empty_evidence_dir",
+      "error": "Expected rejection, got pass"
+    },
+    {
+      "test": "validate_missing_hashes_entry",
+      "error": "Hash mismatch not detected"
+    },
+    {
+      "test": "validate_corrupt_manifest_json",
+      "error": "Parse error not caught cleanly"
+    }
+  ],
+  "patched_failures": [
+    {
+      "test": "validate_corrupt_manifest_json",
+      "error": "Parse error caught but exit code wrong"
+    }
+  ],
+  "resolved_failures": [
+    {
+      "test": "validate_empty_evidence_dir",
+      "error": "Expected rejection, got pass"
+    },
+    {
+      "test": "validate_missing_hashes_entry",
+      "error": "Hash mismatch not detected"
+    }
+  ],
+  "remaining_failures": [
+    {
+      "test": "validate_corrupt_manifest_json",
+      "error": "Parse error caught but exit code wrong"
+    }
+  ]
+}

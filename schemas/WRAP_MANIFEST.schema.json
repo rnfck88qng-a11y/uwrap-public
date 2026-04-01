@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "wrap_manifest.schema.json",
+  "title": "WrapManifest",
+  "description": "Schema for uWrap manifest.json — metadata envelope for a governed proof bundle.",
+  "type": "object",
+  "required": [
+    "wrap_id",
+    "version",
+    "title",
+    "claim_id",
+    "challenge_id",
+    "lifecycle_state",
+    "source",
+    "run_id"
+  ],
+  "properties": {
+    "wrap_id": {
+      "type": "string",
+      "pattern": "^WRAP_[0-9]{3,}$",
+      "description": "Unique wrap identifier"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semantic version of the wrap format"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable title describing what this wrap contains"
+    },
+    "claim_id": {
+      "type": "string",
+      "pattern": "^CLAIM_[0-9]{3,}$",
+      "description": "The claim this wrap provides evidence for"
+    },
+    "claim_summary": {
+      "type": "string",
+      "description": "Human-readable claim statement"
+    },
+    "challenge_id": {
+      "type": "string",
+      "pattern": "^CHAL_[0-9]{3,}$",
+      "description": "The challenge that produced this wrap"
+    },
+    "lifecycle_state": {
+      "type": "string",
+      "enum": ["DRAFT", "PROPOSED", "TESTABLE", "VERIFIED", "CANONICAL", "DEPRECATED"],
+      "description": "Current promotion state in the 6-state ladder"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "string",
+      "description": "System that produced the wrap"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier for the run that produced the result"
+    }
+  },
+  "additionalProperties": false
+}

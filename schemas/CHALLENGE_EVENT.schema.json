@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "challenge_event.schema.json",
+  "title": "ChallengeEvent",
+  "description": "Event emitted to challenge a claim. Consumed by a runner to produce a verifiable result.",
+  "type": "object",
+  "required": [
+    "challenge_id",
+    "claim_id",
+    "claim_text",
+    "challenge_type",
+    "target",
+    "success_criteria",
+    "created_at",
+    "source",
+    "status"
+  ],
+  "properties": {
+    "challenge_id": {
+      "type": "string",
+      "pattern": "^CHAL_[0-9]{3,}$",
+      "description": "Unique challenge identifier"
+    },
+    "claim_id": {
+      "type": "string",
+      "pattern": "^CLAIM_[0-9]{3,}$",
+      "description": "The claim being challenged"
+    },
+    "claim_text": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable claim statement"
+    },
+    "challenge_type": {
+      "type": "string",
+      "enum": ["benchmark", "consistency", "regression", "adversarial"],
+      "description": "Type of challenge being posed"
+    },
+    "target": {
+      "type": "object",
+      "required": ["system", "module"],
+      "properties": {
+        "system": {
+          "type": "string",
+          "description": "Target system for the challenge"
+        },
+        "module": {
+          "type": "string",
+          "description": "Module under test"
+        }
+      },
+      "additionalProperties": false
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "artifacts": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Paths to input artifacts"
+        },
+        "params": {
+          "type": "object",
+          "description": "Key-value parameters for the run"
+        }
+      },
+      "additionalProperties": false
+    },
+    "success_criteria": {
+      "type": "object",
+      "required": ["metric", "threshold"],
+      "properties": {
+        "metric": {
+          "type": "string",
+          "description": "What is measured"
+        },
+        "threshold": {
+          "type": ["number", "string"],
+          "description": "Pass/fail boundary"
+        }
+      },
+      "additionalProperties": false
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "description": "System that emitted the challenge"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PROPOSED", "ACCEPTED", "RUNNING", "COMPLETED", "FAILED"],
+      "description": "Lifecycle state of the challenge"
+    }
+  },
+  "additionalProperties": false
+}

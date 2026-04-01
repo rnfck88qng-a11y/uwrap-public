@@ -1,0 +1,13 @@
+{
+  "wrap_id": "WRAP_001",
+  "version": "0.1.0",
+  "title": "Challenge result: Patch X improves validation reliability over baseline.",
+  "claim_id": "CLAIM_001",
+  "claim_summary": "Patch X improves validation reliability over baseline.",
+  "challenge_id": "CHAL_001",
+  "lifecycle_state": "PROPOSED",
+  "created": "2026-04-01T16:26:05.128Z",
+  "modified": "2026-04-01T16:26:05.128Z",
+  "source": "uLab",
+  "run_id": "RUN_CHAL_001"
+}

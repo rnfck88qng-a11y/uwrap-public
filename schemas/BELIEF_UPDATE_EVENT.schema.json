@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "belief_update_event.schema.json",
+  "title": "BeliefUpdateEvent",
+  "description": "Event emitted after a run completes. Consumed by a belief system to update confidence.",
+  "type": "object",
+  "required": [
+    "belief_update_id",
+    "claim_id",
+    "source_wrap_id",
+    "result",
+    "confidence_delta",
+    "basis",
+    "created_at",
+    "source"
+  ],
+  "properties": {
+    "belief_update_id": {
+      "type": "string",
+      "pattern": "^BU_[0-9]{3,}$",
+      "description": "Unique belief update identifier"
+    },
+    "claim_id": {
+      "type": "string",
+      "pattern": "^CLAIM_[0-9]{3,}$",
+      "description": "The claim this update applies to"
+    },
+    "source_wrap_id": {
+      "type": "string",
+      "pattern": "^WRAP_[0-9]{3,}$",
+      "description": "The uWrap that produced this evidence"
+    },
+    "result": {
+      "type": "string",
+      "enum": ["support", "weaken", "contradict", "inconclusive"],
+      "description": "How the evidence affects the claim"
+    },
+    "confidence_delta": {
+      "type": "number",
+      "minimum": -1.0,
+      "maximum": 1.0,
+      "description": "Change in confidence. Positive = supports claim, negative = weakens."
+    },
+    "basis": {
+      "type": "object",
+      "required": ["metric", "observed_value", "threshold"],
+      "properties": {
+        "metric": {
+          "type": "string",
+          "description": "What was measured"
+        },
+        "observed_value": {
+          "type": ["number", "string"],
+          "description": "What was actually observed"
+        },
+        "threshold": {
+          "type": ["number", "string"],
+          "description": "What was required to pass"
+        }
+      },
+      "additionalProperties": false
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "description": "System that produced the belief update"
+    }
+  },
+  "additionalProperties": false
+}
