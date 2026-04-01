@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+
+case "${1:-}" in
+  validate)
+    node "$SCRIPT_DIR/ci/validate_wrap.mjs" "${@:2}"
+    ;;
+  validate-json)
+    node "$SCRIPT_DIR/ci/validate_wrap.mjs" --json "${@:2}"
+    ;;
+  replay)
+    node "$SCRIPT_DIR/demo/replay.mjs" "${@:2}"
+    ;;
+  sign)
+    "$SCRIPT_DIR/scripts/sign-wrap.sh" "${@:2}"
+    ;;
+  verify)
+    "$SCRIPT_DIR/scripts/verify-wrap-signature.sh" "${@:2}"
+    ;;
+  *)
+    echo "uwrap — validate, sign, and verify uWrap artifacts"
+    echo ""
+    echo "Usage:"
+    echo "  uwrap validate <wrap-dir>              Validate a uWrap (14 checks)"
+    echo "  uwrap validate-json <wrap-dir>         Validate with JSON output"
+    echo "  uwrap replay [wrap-dir]                Replay and verify from artifacts"
+    echo "  uwrap sign <wrap-dir>                  Sign TREE_HASH.txt (Sigstore)"
+    echo "  uwrap verify <wrap-dir> <id> <issuer>  Verify signature"
+    ;;
+esac

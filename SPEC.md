@@ -132,7 +132,19 @@ Single root hash.
 
 ---
 
-## 8. Validation
+## 8. Wrap Identity (Recommended)
+
+The canonical identity of a uWrap is the SHA-256 hash of `TREE_HASH.txt`.
+
+This value uniquely identifies the full contents of the wrap.
+
+The `wrap_id` field may match this value or use a human-readable identifier.
+
+Future versions may standardize wrap identity based on TREE_HASH.
+
+---
+
+## 9. Validation
 
 A valid uWrap passes 14 checks:
 
@@ -182,13 +194,13 @@ node ci/validate_wrap.mjs --json <wrap-dir>
 
 ---
 
-## 9. Example
+## 10. Example
 
 WRAP_001 is a real wrap derived from an internal proof cycle.
 
 ---
 
-## 10. What uWrap Is Not
+## 11. What uWrap Is Not
 
 uWrap v0.1 does NOT provide:
 
@@ -201,7 +213,7 @@ uWrap v0.1 does NOT provide:
 
 ---
 
-## 11. Comparable Standards
+## 12. Comparable Standards
 
 | Standard | Relation |
 |----------|----------|
@@ -214,7 +226,7 @@ uWrap operates at the work-unit evidence level.
 
 ---
 
-## 12. Versioning
+## 13. Versioning
 
 This is v0.1.0.
 
@@ -228,6 +240,6 @@ Compatibility rules:
 
 ---
 
-## 13. License
+## 14. License
 
 Apache-2.0

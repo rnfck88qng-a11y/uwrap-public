@@ -36,7 +36,7 @@ Passing validation does **not** by itself prove that the underlying claim is tru
 ## Validate a wrap
 
 ```bash
-node ci/validate_wrap.mjs path/to/WRAP_001
+./bin/uwrap validate path/to/WRAP_001
 ```
 
 14 checks across 4 layers:
@@ -57,8 +57,8 @@ The reference validator has zero external runtime dependencies and uses Node.js 
 `examples/WRAP_001/` is a real wrap derived from an internal proof cycle. It demonstrates a regression-style comparison between baseline and patched outcomes.
 
 ```bash
-node ci/validate_wrap.mjs examples/WRAP_001
-node demo/replay.mjs
+./bin/uwrap validate examples/WRAP_001
+./bin/uwrap replay
 ```
 
 ## Specification
@@ -81,6 +81,18 @@ Validate uWraps in CI. Fail the build if validation fails.
 ```
 
 See `.github/workflows/validate.yml` for a working example.
+
+## Reproducibility
+
+A valid uWrap can be:
+
+- Validated locally
+- Transported
+- Revalidated without external services
+
+Reproducibility depends on the completeness and quality of evidence.
+
+uWrap guarantees structural and integrity reproducibility, not semantic correctness.
 
 ## Compliance
 
