@@ -1,27 +1,41 @@
-# uWrap Ecosystem Integration
+# uWrap Ecosystem
 
-uWrap is a packaging and validation layer. Distribution, signing, and policy enforcement are handled by existing tools.
+uWrap is designed to integrate with existing tooling rather than replace it.
+
+- uWrap focuses on packaging and validating work-unit artifacts.
+- Other systems handle distribution, trust, and policy.
+
+## Overview
 
 ```
-[Execution] → [uWrap] → [OCI] → [Sigstore] → [OPA]
-               validate    distribute   sign        enforce
+Execution (CI / uLab)
+        |
+      uWrap
+ (artifact + evidence + hashes)
+        |
+     OCI (optional)
+ (distribution layer)
+        |
+   Sigstore (optional)
+ (signing + verification)
+        |
+      OPA (optional)
+ (policy enforcement)
 ```
 
 ---
 
-## 1. OCI — Distribution
+## OCI — Distribution
 
-A uWrap may be distributed as a `.tar.gz` archive or stored in an OCI-compatible registry as an OCI artifact.
+uWrap artifacts can be packaged and stored in OCI-compatible registries.
 
-OCI packaging is a distribution layer. The uWrap validator remains the compliance authority.
-
-### Packaging
+### Minimal packaging
 
 ```bash
 tar -czf WRAP_001.tar.gz WRAP_001/
 ```
 
-### OCI Push (via ORAS)
+### Push to registry (ORAS)
 
 ```bash
 oras push ghcr.io/<org>/uwrap/WRAP_001:0.1.0 \
@@ -29,115 +43,94 @@ oras push ghcr.io/<org>/uwrap/WRAP_001:0.1.0 \
   WRAP_001.tar.gz:application/vnd.uwrap.layer.v1.tar+gzip
 ```
 
-### OCI Pull
+### Pull
 
 ```bash
 oras pull ghcr.io/<org>/uwrap/WRAP_001:0.1.0
 ```
 
-### Media Types
-
-| Type | Value |
-|------|-------|
-| Artifact type | `application/vnd.uwrap.v1` |
-| Tar layer | `application/vnd.uwrap.layer.v1.tar+gzip` |
+OCI is used for distribution only. uWrap validation remains the source of truth.
 
 ---
 
-## 2. Sigstore — Signing and Verification (v0.2)
+## Sigstore — Signing (Planned)
 
-Sign `TREE_HASH.txt` — the single root hash that anchors the entire wrap's integrity chain.
+Future versions of uWrap may support optional signing.
 
-If `TREE_HASH.txt` is trusted, and `TREE_HASH.txt = sha256(hashes.txt)`, and `hashes.txt` covers every file, then trust anchors the whole wrap.
+### Proposed model
 
-### Sign
+- Sign `TREE_HASH.txt`
+- Store signature as `SIGNATURE.sigstore.json`
+- Verify using Sigstore tools
 
-```bash
-cosign sign-blob TREE_HASH.txt --bundle SIGNATURE.sigstore.json
-```
-
-### Verify
-
-```bash
-cosign verify-blob TREE_HASH.txt \
-  --bundle SIGNATURE.sigstore.json \
-  --certificate-identity <expected-identity> \
-  --certificate-oidc-issuer <expected-issuer>
-```
-
-### Trust States
+### Trust levels
 
 | State | Meaning |
 |-------|---------|
-| valid | Passes uWrap validator |
-| invalid | Fails uWrap validator |
-| valid + unsigned | Structurally usable, not trusted by issuer |
-| valid + signed | Structurally valid and signed |
-| valid + verified issuer | Signed and verified against expected identity |
+| valid | Passes validator |
+| valid + signed | Signature present |
+| valid + verified | Signature matches trusted identity |
 
-Structure and trust are separate. The validator checks structure. Sigstore checks origin.
-
-### File Additions (v0.2)
-
-| File | Purpose |
-|------|---------|
-| `SIGNATURE.sigstore.json` | Sigstore bundle (signature + certificate + transparency log proof) |
-
-### Spec Rule (v0.2)
-
-> A **signed uWrap** is a validator-valid uWrap whose TREE_HASH.txt has a verifiable Sigstore bundle.
-> A **trusted uWrap** is a signed uWrap whose signing identity matches a configured trust policy.
+Signing is not part of v0.1.
 
 ---
 
-## 3. OPA — Policy Enforcement (External)
+## OPA — Policy Enforcement
 
-Use OPA after uWrap validation, not instead of it. The pattern: validate first, then apply policy.
+uWrap validation answers: *"Is this artifact structurally valid?"*
 
-### Input Model
+OPA answers: *"Is this artifact allowed?"*
 
-Feed OPA a normalized JSON object:
+### Example flow
 
-```json
-{
-  "validator": {
-    "valid": true,
-    "wrap_id": "WRAP_001"
-  },
-  "manifest": {
-    "lifecycle_state": "PROPOSED",
-    "source": "uLab"
-  },
-  "result": {
-    "status": "PASS"
-  },
-  "signature": {
-    "present": false,
-    "verified": false,
-    "issuer": null
-  }
+```
+uWrap → validate → OPA → allow / deny
+```
+
+### Example policy
+
+```rego
+package uwrap
+
+deny[msg] {
+  input.manifest.lifecycle_state != "VERIFIED"
+  msg := "wrap must be VERIFIED"
 }
 ```
 
-### Flow
-
-```
-validate_wrap.mjs --json → transform → OPA evaluate → allow / deny
-```
-
-Validator = structure + integrity. OPA = admission policy.
-
-See `opa/` directory for example policies.
+OPA operates on structured data derived from the wrap. See `opa/` for example policies.
 
 ---
 
-## 4. SLSA / in-toto — Concept Alignment
-
-uWrap does not compete with SLSA. They cover different layers:
+## Relationship to Other Standards
 
 | Layer | Tool |
 |-------|------|
-| Build provenance | SLSA |
+| Build provenance | SLSA / in-toto |
 | Work-unit evidence | uWrap |
+| Policy enforcement | OPA |
+| Distribution | OCI |
+| Signing | Sigstore |
 
-uWrap complements existing systems by packaging work-unit results with evidence and validation.
+uWrap operates at the work-unit evidence layer.
+
+---
+
+## Design Principles
+
+- Validator defines compliance
+- Packaging is separate from transport
+- Integrity is separate from trust
+- Policy is external to validation
+
+---
+
+## Summary
+
+uWrap does one thing: define a portable, verifiable artifact for a unit of work.
+
+It integrates with existing systems for:
+
+- Distribution (OCI)
+- Trust (Sigstore)
+- Enforcement (OPA)
