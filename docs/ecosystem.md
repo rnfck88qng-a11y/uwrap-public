@@ -29,18 +29,49 @@ Execution (CI / uLab)
 
 uWrap artifacts can be packaged and stored in OCI-compatible registries.
 
+### OCI Naming Constraints
+
+OCI registries require lowercase repository names.
+
+uWrap identifiers (e.g. WRAP_001) MUST be mapped when used in OCI references.
+
+Example:
+
+Internal:
+WRAP_001
+
+OCI reference:
+wrap_001
+
+This mapping applies only to transport. The internal uWrap structure remains unchanged.
+
+### Authentication
+
+Pushing uWrap artifacts to OCI registries requires authentication.
+
+Example (GitHub Container Registry):
+
+```bash
+oras login ghcr.io -u <username> -p <token>
+```
+
+Pull operations may be unauthenticated depending on registry configuration.
+
 ### Minimal packaging
 
 ```bash
 tar -czf WRAP_001.tar.gz WRAP_001/
 ```
 
-### Push to registry (ORAS)
+### Helper command (Push)
 
 ```bash
-oras push ghcr.io/<org>/uwrap/WRAP_001:0.1.0 \
+WRAP_ID=WRAP_001
+OCI_NAME=$(echo "$WRAP_ID" | tr '[:upper:]' '[:lower:]')
+
+oras push ghcr.io/<org>/uwrap/${OCI_NAME}:0.1.0 \
   --artifact-type application/vnd.uwrap.v1 \
-  WRAP_001.tar.gz:application/vnd.uwrap.layer.v1.tar+gzip
+  ${WRAP_ID}.tar.gz:application/vnd.uwrap.layer.v1.tar+gzip
 ```
 
 ### Pull
