@@ -90,6 +90,16 @@ If a package does not pass validation, it is not a uWrap.
 
 The validator is the source of truth for compliance.
 
+## Ecosystem
+
+uWrap is designed to work with existing tooling:
+
+- **OCI** — distribution of wrap artifacts via registries
+- **Sigstore** — signing and verification (planned)
+- **OPA** — policy enforcement (external)
+
+uWrap focuses on packaging and validation of work units. Trust, distribution, and policy are handled by existing tools.
+
 ## What uWrap is NOT
 
 - Not a runtime governance system
