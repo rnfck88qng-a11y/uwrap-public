@@ -71,6 +71,17 @@ See [SPEC.md](SPEC.md) for the full v0.1 specification.
 - `schemas/CHALLENGE_EVENT.schema.json`
 - `schemas/BELIEF_UPDATE_EVENT.schema.json`
 
+## CI Integration
+
+Validate uWraps in CI. Fail the build if validation fails.
+
+```yaml
+- name: Validate uWrap
+  run: node ci/validate_wrap.mjs path/to/wrap
+```
+
+See `.github/workflows/validate.yml` for a working example.
+
 ## Compliance
 
 A valid uWrap is defined as a directory that passes the official validator.
