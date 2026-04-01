@@ -71,6 +71,14 @@ See [SPEC.md](SPEC.md) for the full v0.1 specification.
 - `schemas/CHALLENGE_EVENT.schema.json`
 - `schemas/BELIEF_UPDATE_EVENT.schema.json`
 
+## Compliance
+
+A valid uWrap is defined as a directory that passes the official validator.
+
+If a package does not pass validation, it is not a uWrap.
+
+The validator is the source of truth for compliance.
+
 ## What uWrap is NOT
 
 - Not a runtime governance system
