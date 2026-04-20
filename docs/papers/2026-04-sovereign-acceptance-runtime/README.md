@@ -9,6 +9,7 @@ This folder contains the release packet for the working paper.
 - [`contributor-brief.md`](contributor-brief.md) — concise contributor-facing brief
 - [`reviewer-prompt.md`](reviewer-prompt.md) — adversarial review prompt for skeptical technical readers
 - [`launch-post.md`](launch-post.md) — public launch copy in multiple lengths
+- [`validation-plan.md`](validation-plan.md) — 30-day academic and SCITT validation checklist
 - [`diagrams/README.md`](diagrams/README.md) — suggested visual diagrams for the paper
 - `outreach/` — memo and targeted outreach templates
   - [`memo.md`](outreach/memo.md) — one-page strategic memo

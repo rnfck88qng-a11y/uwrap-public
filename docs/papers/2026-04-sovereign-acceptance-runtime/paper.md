@@ -225,7 +225,26 @@ What is needed is a bounded layer of governed execution: a **Sovereign Acceptanc
 
 The current AlterA packet does not prove the whole system. It proves enough to justify the doctrine, define bounded technical contributions, and invite rigorous collaboration on the missing parts.
 
-## References
+## 11. Alternative Views and Counterarguments
+
+Any architectural proposal must survive engagement with its strongest counterarguments. Three prevalent objections challenge the necessity or viability of execution-level governance.
+
+### 11.1 Objection: Centralized model governance remains sufficient
+A common view holds that if frontier model weights are rigorously aligned during pre-training, and hosted APIs are aggressively red-teamed and moderated by providers, downstream execution-level governance is redundant or actively harmful to open experimentation.
+
+**Counterargument:** This assumption relies on a topological constraint—that highly capable models require massive, centralized data centers to run. This constraint is collapsing. As sophisticated foundation models become mathematically portable, they can be seamlessly decoupled from API-level provider moderation. A system design that cannot safely execute a locally run, unaligned parameter model is a structurally unsafe system. Safety must reside in the physics of the environment (the execution runtime) rather than solely relying upon the intent alignment of the model.
+
+### 11.2 Objection: Execution-boundary enforcement is intractable at scale
+Critics argue that capturing receipt-driven provenance for every autonomous action creates an exploding, computationally intractable graph of micro-events that halts system capability.
+
+**Counterargument:** This is resolved by correctly partitioning authorization, the primary purpose of the STRONG and WEAK guard architecture (Section 6). The runtime does not mandate cryptographic provenance on every probabilistic logic loop or heuristic guess (WEAK guards). It enforces execution boundary provenance *only* at the threshold of sovereign system mutations (e.g., file writes, outward packet broadcasts, or canonical memory updates). By bounding governance strictly to the transition perimeter (STRONG guards), the runtime prevents computational explosion while maintaining a mechanical guarantee against unauthorized mutation.
+
+### 11.3 Objection: Receipt-driven governance reproduces blockchain failure modes
+A final objection argues that relying on cryptographic receipts, inclusion proofs (SCITT), and append-only state creates a cumbersome abstraction replicating widely acknowledged failures of decentralized consensus logs.
+
+**Counterargument:** This obscures the critical distinction between an *authority* ledger and a *consensus* ledger. The Sovereign Acceptance Runtime is not a decentralized consensus layer seeking permissionless agreement among untrusted validating nodes over a distributed network. It is the authority boundary for an individual sovereign system. It uses cryptographic formats (like the Proof Envelope) solely to generate a deterministic, machine-readable artifact of intent that cannot be spoofed by ungrounded text generation. The receipts enforce one simple doctrine: an AI may propose a transition, but a designated human operator alone holds the sovereign authority to elevate it to CANON.
+
+## 12. References
 
 ### External references
 - [Apple Developer — Foundation Models](https://developer.apple.com/machine-learning/)
