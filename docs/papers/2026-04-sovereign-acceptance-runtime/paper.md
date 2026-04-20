@@ -1,5 +1,5 @@
-# The Sovereign Acceptance Runtime
-## Portable Governance for AI Work in a World of Cheap, Local, and Forkable Models
+# Governance for AI Must Move to the Execution Boundary
+## The Sovereign Acceptance Runtime
 
 **Status:** Working paper  
 **Scope:** doctrine, bounded implementation evidence, and open research agenda  
@@ -7,7 +7,7 @@
 
 ## Abstract
 
-As capable AI models become cheaper, more portable, and increasingly deployable on local hardware, the center of the governance problem shifts away from centralized providers and toward the execution boundary. This changes the control question. If intelligence is local, cheap, and forkable, governance cannot rely only on centralized moderation, hosted APIs, or after-the-fact dashboards.
+This position paper argues that as capable AI models become cheaper, more portable, and increasingly deployable on local hardware, the center of the governance problem shifts away from centralized providers and toward the execution boundary. This changes the control question. If intelligence is local, cheap, and forkable, governance cannot rely only on centralized moderation, hosted APIs, or after-the-fact dashboards.
 
 This paper argues for a missing layer: the **Sovereign Acceptance Runtime**. A Sovereign Acceptance Runtime is a bounded execution layer that constrains what intelligence may do, records what it attempted, proves what happened, keeps contradictions visible, and reserves canonical acceptance to human operators alone.
 
@@ -22,7 +22,7 @@ These claims are made only to the extent justified by bounded internal evidence,
 
 ## 1. The problem moved to the execution boundary
 
-Most AI governance discussion still assumes that the decisive control point sits at the model layer: frontier labs, hosted APIs, or downstream moderation.
+**This position paper argues that governance for distributed AI must enforce safety structurally at the execution boundary rather than relying exclusively on model alignment.** Most AI governance discussion still assumes that the decisive control point sits at the model layer: frontier labs, hosted APIs, or downstream moderation.
 
 That assumption weakens as increasingly capable models become deployable on personal and enterprise hardware. Once intelligence becomes broadly portable, the central question is no longer only whether a provider moderates a model well. The question becomes:
 
@@ -147,7 +147,7 @@ The following claims are currently strong enough to state as **proven in bounded
 - uPipe P0, P1, and P2 in bounded runtime scope
 - Memory Layer v1 Phase 1 at the authority-boundary layer
 - a bounded packet lane with local receipt signing
-- uSpine as the one worked example of a completed CANON path
+- a bounded demonstration of the CANON promotion path
 - STRONG/WEAK guard separation at the Sentinel boundary
 
 These are bounded proofs, not generalized claims about total platform completion.
@@ -253,11 +253,8 @@ A final objection argues that relying on cryptographic receipts, inclusion proof
 - [Sigstore documentation — overview, keyless signing, Rekor](https://docs.sigstore.dev/)
 - [SLSA framework documentation](https://slsa.dev/)
 - [IETF SCITT documents](https://ietf-scitt.github.io/)
+- [Needs Academic Citation] (Target: cs.CR paper on execution provenance)
+- [Needs Academic Citation] (Target: cs.CR paper on edge-AI security)
 
 ### Internal evidence packet
-- completion gap ledger
-- contradictions and drift ledger
-- decision register
-- durable memory candidates
-- do not memorize list
-- top open threads
+- *Evidence referenced in this paper is maintained in a public repository; repository URL will be provided post-review.*

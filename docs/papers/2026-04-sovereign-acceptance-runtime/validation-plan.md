@@ -16,7 +16,7 @@ This 30-day plan executes the strategy to academically validate the Sovereign Ac
 | Apr 29 | Send arXiv endorsement request #1. | arXiv | `[ ]` |
 | May 1 | Trim paper to 9 pages. | NeurIPS | `[ ]` |
 | May 2 | Get one cold-read of the paper (from SCITT contact or endorser if engaged). | NeurIPS | `[ ]` |
-| May 4 | Abstract submission deadline for NeurIPS. | NeurIPS | `[ ]` |
+
 | May 6 | Full paper submission deadline for NeurIPS. | NeurIPS | `[ ]` |
 | May 6 | If no arXiv endorsement yet, send request #2. | arXiv | `[ ]` |
 | May 10 | Follow up once on SCITT thread if it has movement. | SCITT | `[ ]` |
