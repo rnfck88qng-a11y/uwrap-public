@@ -4,12 +4,12 @@ This folder contains the release packet for the working paper.
 
 ## Files
 
-- `paper.md` — the main paper
-- `appendix.md` — claim boundaries, truth classes, and open problems
-- `contributor-brief.md` — concise contributor-facing brief
-- `reviewer-prompt.md` — adversarial review prompt for skeptical technical readers
-- `launch-post.md` — public launch copy in multiple lengths
-- `diagrams/README.md` — suggested visual diagrams for the paper
+- [`paper.md`](paper.md) — the main paper
+- [`appendix.md`](appendix.md) — claim boundaries, truth classes, and open problems
+- [`contributor-brief.md`](contributor-brief.md) — concise contributor-facing brief
+- [`reviewer-prompt.md`](reviewer-prompt.md) — adversarial review prompt for skeptical technical readers
+- [`launch-post.md`](launch-post.md) — public launch copy in multiple lengths
+- [`diagrams/README.md`](diagrams/README.md) — suggested visual diagrams for the paper
 
 ## Positioning
 

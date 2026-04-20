@@ -79,6 +79,8 @@ The paper must stay out of these claims:
 - settled internal doctrine for every subsystem boundary
 - volatile counts, stale snapshots, and single-source shipping claims
 
+**Note on boundaries:** uWrap v0.1 defines the Proof Envelope at the packaging layer, but it does not by itself provide the full acceptance runtime, generalized governance gates, or complete execution-boundary enforcement.
+
 ## 7. Truth discipline notes
 
 ### 7.1 Memory claim

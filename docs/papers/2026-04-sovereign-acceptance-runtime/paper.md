@@ -118,6 +118,8 @@ through a governed lifecycle.
 
 In current truth terms, the Proof Envelope is best described as **specified / partially enforced** rather than generally deployed. The point of naming it here is not to claim finished implementation, but to define the object that moves through a receipted runtime.
 
+**Note on boundaries:** uWrap v0.1 defines the Proof Envelope at the packaging layer, but it does not by itself provide the full acceptance runtime, generalized governance gates, or complete execution-boundary enforcement.
+
 ## 6. STRONG and WEAK guards
 
 The third contribution is the separation between **STRONG** and **WEAK** guards.
@@ -223,12 +225,12 @@ The current AlterA packet does not prove the whole system. It proves enough to j
 ## References
 
 ### External references
-- Apple Developer — Foundation Models
-- Google AI for Developers — Gemma
-- European Commission — AI Act timeline and applicability
-- Sigstore documentation — overview, keyless signing, Rekor
-- SLSA framework documentation
-- IETF SCITT documents
+- [Apple Developer — Foundation Models](https://developer.apple.com/machine-learning/)
+- [Google AI for Developers — Gemma](https://ai.google.dev/gemma)
+- [European Commission — AI Act timeline and applicability](https://artificialintelligenceact.eu/)
+- [Sigstore documentation — overview, keyless signing, Rekor](https://docs.sigstore.dev/)
+- [SLSA framework documentation](https://slsa.dev/)
+- [IETF SCITT documents](https://ietf-scitt.github.io/)
 
 ### Internal evidence packet
 - completion gap ledger
