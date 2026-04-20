@@ -10,6 +10,14 @@ This folder contains the release packet for the working paper.
 - [`reviewer-prompt.md`](reviewer-prompt.md) — adversarial review prompt for skeptical technical readers
 - [`launch-post.md`](launch-post.md) — public launch copy in multiple lengths
 - [`diagrams/README.md`](diagrams/README.md) — suggested visual diagrams for the paper
+- `outreach/` — memo and targeted outreach templates
+  - [`memo.md`](outreach/memo.md) — one-page strategic memo
+  - [`deepmind-note.md`](outreach/deepmind-note.md)
+  - [`aisi-note.md`](outreach/aisi-note.md)
+  - [`20vc-note.md`](outreach/20vc-note.md)
+  - [`demis-note.md`](outreach/demis-note.md)
+  - [`public-post.md`](outreach/public-post.md)
+  - [`checklist.md`](outreach/checklist.md)
 
 ## Positioning
 

@@ -81,6 +81,9 @@ The paper must stay out of these claims:
 
 **Note on boundaries:** uWrap v0.1 defines the Proof Envelope at the packaging layer, but it does not by itself provide the full acceptance runtime, generalized governance gates, or complete execution-boundary enforcement.
 
+### uWrap v0.1 scope boundary
+uWrap v0.1 defines the packaging layer only: a portable, machine-readable Proof Envelope that binds an artifact to its claims, receipts, and evidence. It is deliberately decoupled from the broader Sovereign Acceptance Runtime described in this paper. The runtime may adopt uWrap as one packaging format among several, and uWrap can be produced and consumed by systems that do not implement the runtime’s acceptance gates, policy evaluation, or human-promotion rules.
+
 ## 7. Truth discipline notes
 
 ### 7.1 Memory claim

@@ -107,6 +107,9 @@ The receipt circuit also needs a governed container.
 
 That is the role of the **Proof Envelope** — the public-facing name used here for the internal `uWrap` concept.
 
+**Note on scope and open standardization.**
+uWrap v0.1 defines the packaging layer only: a portable, machine-readable Proof Envelope that binds an artifact to its claims, receipts, and evidence. It is deliberately decoupled from the broader Sovereign Acceptance Runtime described in this paper. The runtime may adopt uWrap as one packaging format among several, and uWrap can be produced and consumed by systems that do not implement the runtime’s acceptance gates, policy evaluation, or human-promotion rules.
+
 The Proof Envelope is the portable package that carries:
 - a task or claim
 - associated evidence
