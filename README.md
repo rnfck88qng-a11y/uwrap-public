@@ -2,6 +2,14 @@
 
 A folder-based format for packaging AI work with explicit structure, evidence, and deterministic validation.
 
+## Working paper
+
+This repo also contains a working paper on governed execution, bounded proofs, and open problems:
+
+- [`docs/papers/2026-04-sovereign-acceptance-runtime/paper.md`](docs/papers/2026-04-sovereign-acceptance-runtime/paper.md)
+
+This is not a claim that the full stack is complete. It is a doctrine paper describing the governance layer that uWrap belongs to.
+
 ## What is uWrap?
 
 uWrap is a directory structure for packaging AI work outputs together with metadata, result data, supporting evidence, and integrity hashes.
