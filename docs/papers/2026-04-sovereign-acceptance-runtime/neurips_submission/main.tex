@@ -1,0 +1,97 @@
+\documentclass{article}
+
+% IMPORTANT: You must download the official neurips_2026.sty from the NeurIPS website
+% and place it in this directory. The [position] option is mandatory for this track.
+\usepackage[position]{neurips_2026}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+\title{The Sovereign Acceptance Runtime: A Position on Portable AI Governance}
+
+% The \author macro works with any number of authors. 
+% For double-blind review, leave as anonymous.
+\author{
+  Anonymous Authors \\
+  Independent Research \\
+  \texttt{anonymous@example.com} \\
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This position paper argues that as capable foundation models become highly portable, inexpensive, and capable of executing locally, AI safety cannot rely exclusively upon centralized provider moderation. We argue that governance must shift to the execution boundary. To this end, this paper proposes the Sovereign Acceptance Runtime: a bounded execution architecture that utilizes cryptographic proof envelopes, receipt-driven accountability, and explicit truth-state classifications. Under this discipline, an AI agent may propose state transitions, but physical execution safeguards guarantee that only designated human authorities can elevate a proposal to canonical truth.
+\end{abstract}
+
+\section{Introduction}
+
+\textbf{This position paper argues that execution-boundary governance is required for distributed AI safety.} Currently, the dominant paradigm in AI safety assumes the decisive chokepoint sits at the model layer: frontier lab weights, hosted APIs, and provider-level safety interventions. However, this assumption is structurally threatened by the rapid proliferation of open-weights models and edge computing.
+
+Once artificial intelligence can operate locally and independent of centralized infrastructure, the primary safety question transforms: what mechanically governs the execution of an unaligned model running on local hardware? If safety depends only on the inherent psychology of an edge-deployed model, the system is fundamentally brittle.
+
+\section{The Limits of Provenance and Existing Solutions}
+Recent progress in software supply-chain provenance (e.g., cryptographic signing and attestation networks) provides critical infrastructure for tracking artifacts. However, artifact provenance alone is insufficient for agentic acceptance. It cannot answer who held the authority to trigger a state mutation, what bounded capability was active, or whether a transition from a proposed draft to canonical reality violated required review thresholds. 
+
+To resolve this, we mandate a bounded runtime discipline where provenance, receipts, human review, contradiction handling, and canonical acceptance form a single mathematically bounded circuit.
+
+\section{Sovereign Acceptance}
+We introduce the Sovereign Acceptance Runtime—an architectural environment where an AI may propose, analyze, or synthesize within constrained execution pipelines, but possesses no unilateral authority to declare canonical truth. 
+
+The stable doctrine operates on these principles:
+\begin{itemize}
+    \item Generative systems may propose
+    \item Humans alone declare CANON
+    \item Projections and dashboards do not represent authoritative truth
+    \item Execution traces may not be silently overwritten or abandoned
+\end{itemize}
+
+\section{Tri-State Truth and Architectural Discipline}
+Deploying safety systems requires an immediate defense against narrative drift and self-deception. This architecture implements a Tri-State Truth protocol for evaluating system claims:
+\begin{itemize}
+    \item \textbf{Specified:} Defined theoretically but not actively proven.
+    \item \textbf{Partially Enforced:} Mechanically active in bounded paths but lacking generalized closure.
+    \item \textbf{Proven:} Multi-sourced, bounded, and rigorously validated through executed receipts.
+\end{itemize}
+Rather than claiming total system completeness, this discipline mathematically separates proven runtime execution paths from theoretical future aspirations.
+
+\section{Receipt-Driven Governance and the Proof Envelope}
+Standard system logs do not suffice for accountable AI. We argue for receipt-driven governance—an unbroken chain of cryptographic statements linking instruction, execution, human review, and promotion. 
+
+To encapsulate these governed objects, we define the \textbf{Proof Envelope}. A proof envelope is a portable, machine-readable package binding an artifact to its claims, associated execution receipts, and constraint validations. It operates as the fundamental packaging layer driving the runtime's validation mechanics without requiring centralized consensus protocols.
+
+\section{STRONG and WEAK Guard Separation}
+To prevent computational explosion around provenance generation, the runtime isolates advisory AI logic from authoritative execution utilizing a STRONG/WEAK guard topology:
+\begin{itemize}
+    \item \textbf{WEAK Guards:} Advisory logic loops and heuristic analysis governing internal probabilistic planning. Proof envelopes are not required here.
+    \item \textbf{STRONG Guards:} The authoritative execution boundary (e.g., file writes, outward network broadcasts, or database commits) requiring explicit human or mechanical interceptor clearance backed by a valid proof envelope.
+\end{itemize}
+
+\section{Alternative Views and Counterarguments}
+
+Any architectural position must engage its strongest counterarguments. 
+
+\subsection{Centralized model governance is sufficient}
+Some argue that rigorous alignment at the pre-training phase alongside aggressive red-teaming of centralized APIs renders downstream execution-governance redundant. \textbf{Counterargument:} This assumes a topological constraint—that highly capable models require massive data centers. As models become mathematically portable and are decoupled from API-level moderation, safety must reside in the rigid physics of the execution environment rather than solely relying upon the alignment of the model itself.
+
+\subsection{Execution-boundary enforcement is intractable at scale}
+Critics argue that generating cryptographic provenance for every autonomous AI action creates an exploding, computationally intractable graph that paralyzes performance. \textbf{Counterargument:} This is addressed by explicitly separating STRONG and WEAK guards. The runtime does not mandate provenance on every heuristic guess; it enforces execution boundary provenance \textit{only} at the threshold of sovereign system mutations. 
+
+\subsection{Receipt-driven governance reproduces blockchain failure modes}
+A final objection argues that cryptographic transparency logs replicate the permissionless delays inherent to decentralized consensus ledgers. \textbf{Counterargument:} This obscures the distinction between an \textit{authority} ledger and a \textit{consensus} ledger. The Sovereign Acceptance Runtime is not seeking permissionless consensus across untrusted nodes; it is an internal authority boundary enforcing the rule that AI proposes while a designated human acts as the sole sovereign canonical authority.
+
+\section*{AI Assistance Declaration}
+In compliance with the NeurIPS 2026 Position Paper Track policy, the authors declare that Artificial Intelligence tools were utilized to assist in generating early draft text and copy-editing for Sections 1 through 6. The final text was heavily edited and approved by the human author. Section 7 (Alternative Views and Counterarguments) and the Tri-State classifications were authored entirely by humans.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
